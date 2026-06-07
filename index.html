@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Luniq — a surreal digital toy universe where imagination behaves like physics.">
+  <title>Luniq</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bungee+Shade&family=Inter:wght@300;400;500;600&family=Nunito+Sans:wght@300;400;600&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/main.css">
+</head>
+<body>
+  <a href="#reality-core" class="skip-link">Skip to experience</a>
+
+  <!-- Floating Cube Navigation -->
+  <nav class="cube-nav" aria-label="Site navigation">
+    <button class="cube-nav__trigger" id="cubeTrigger" aria-expanded="false" aria-controls="cubeNavLabels" aria-label="Open navigation">
+      <span class="cube-nav__cube" aria-hidden="true">
+        <span class="cube-face cube-face--front"></span>
+        <span class="cube-face cube-face--back"></span>
+        <span class="cube-face cube-face--right"></span>
+        <span class="cube-face cube-face--left"></span>
+        <span class="cube-face cube-face--top"></span>
+        <span class="cube-face cube-face--bottom"></span>
+      </span>
+      <span class="cube-nav__shards" aria-hidden="true"></span>
+    </button>
+    <div class="cube-nav__labels" id="cubeNavLabels" hidden>
+      <a href="#playground-lane" class="cube-nav__label" data-nav="playground">Playground</a>
+      <a href="#idea-clouds" class="cube-nav__label" data-nav="ideas">Ideas</a>
+      <a href="#glitch-portals" class="cube-nav__label" data-nav="portals">Portals</a>
+      <a href="#toy-grid" class="cube-nav__label" data-nav="experiments">Experiments</a>
+      <a href="#sound-sphere" class="cube-nav__label" data-nav="sound">Sound</a>
+      <a href="#spin-core" class="cube-nav__label" data-nav="contact">Contact</a>
+    </div>
+  </nav>
+
+  <!-- Ambient canvas layer -->
+  <canvas id="ambientCanvas" class="ambient-canvas" aria-hidden="true"></canvas>
+
+  <main id="luniqUniverse" class="universe">
+
+    <!-- SECTION 1: Floating Reality Core -->
+    <section id="reality-core" class="section section--core" aria-label="Floating reality core">
+      <canvas id="orbCanvas" class="orb-canvas" aria-hidden="true"></canvas>
+      <div class="orb-hint" aria-live="polite">
+        <span class="orb-hint__text">scroll · move · discover</span>
+      </div>
+    </section>
+
+    <!-- SECTION 2: Shifting Toy Grid -->
+    <section id="toy-grid" class="section section--toys" aria-label="Shifting toy grid">
+      <div class="toy-grid" id="toyGrid" role="list"></div>
+    </section>
+
+    <!-- SECTION 3: Idea Cloud Field -->
+    <section id="idea-clouds" class="section section--clouds" aria-label="Idea cloud field">
+      <canvas id="cloudParticles" class="cloud-particles" aria-hidden="true"></canvas>
+      <div class="cloud-field" id="cloudField"></div>
+    </section>
+
+    <!-- SECTION 4: Dimension Glitch Portals -->
+    <section id="glitch-portals" class="section section--portals" aria-label="Dimension glitch portals">
+      <div class="portal-space" id="portalSpace">
+        <div class="portal-realm" id="portalRealm" aria-live="polite">
+          <p class="portal-realm__hint">Step through a portal…</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 5: Mini Playground Lane -->
+    <section id="playground-lane" class="section section--playground" aria-label="Mini playground lane">
+      <div class="playground-lane" id="playgroundLane">
+        <div class="playground-toy" data-toy="rhythm">
+          <h3 class="playground-toy__title">Tap Rhythm</h3>
+          <div class="rhythm-pads" id="rhythmPads">
+            <button class="rhythm-pad" data-pad="0" aria-label="Pad 1"></button>
+            <button class="rhythm-pad" data-pad="1" aria-label="Pad 2"></button>
+            <button class="rhythm-pad" data-pad="2" aria-label="Pad 3"></button>
+            <button class="rhythm-pad" data-pad="3" aria-label="Pad 4"></button>
+          </div>
+          <span class="rhythm-score" id="rhythmScore">0</span>
+        </div>
+        <div class="playground-toy" data-toy="flip">
+          <h3 class="playground-toy__title">Color Flip</h3>
+          <button class="flip-board" id="flipBoard" aria-label="Flip colors">
+            <span class="flip-board__inner" id="flipInner"></span>
+          </button>
+          <span class="flip-streak" id="flipStreak">streak: 0</span>
+        </div>
+        <div class="playground-toy" data-toy="spinner">
+          <h3 class="playground-toy__title">Random Spinner</h3>
+          <button class="spinner-wheel" id="spinnerWheel" aria-label="Spin the wheel">
+            <span class="spinner-wheel__pointer" aria-hidden="true"></span>
+            <span class="spinner-wheel__label" id="spinnerLabel">?</span>
+          </button>
+        </div>
+        <div class="playground-toy" data-toy="chaos">
+          <h3 class="playground-toy__title">Chaos Click</h3>
+          <button class="chaos-btn" id="chaosBtn" aria-label="Chaos counter">0</button>
+        </div>
+        <div class="playground-toy" data-toy="memory">
+          <h3 class="playground-toy__title">Memory Illusion</h3>
+          <div class="memory-grid" id="memoryGrid"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 6: Floating Note Realm -->
+    <section id="note-realm" class="section section--notes" aria-label="Floating note realm">
+      <div class="note-realm" id="noteRealm"></div>
+    </section>
+
+    <!-- SECTION 7: Sound Sphere Zone -->
+    <section id="sound-sphere" class="section section--sound" aria-label="Sound sphere zone">
+      <div class="sound-sphere" id="soundSphere">
+        <div class="sound-orb sound-orb--1" data-tone="0" tabindex="0" role="button" aria-label="Play tone 1"></div>
+        <div class="sound-orb sound-orb--2" data-tone="1" tabindex="0" role="button" aria-label="Play tone 2"></div>
+        <div class="sound-orb sound-orb--3" data-tone="2" tabindex="0" role="button" aria-label="Play tone 3"></div>
+        <div class="sound-orb sound-orb--4" data-tone="3" tabindex="0" role="button" aria-label="Play tone 4"></div>
+        <div class="sound-orb sound-orb--5" data-tone="4" tabindex="0" role="button" aria-label="Play tone 5"></div>
+        <div class="sound-orb sound-orb--6" data-tone="5" tabindex="0" role="button" aria-label="Play tone 6"></div>
+        <p class="sound-hint">touch anything — it sings</p>
+      </div>
+    </section>
+
+    <!-- SECTION 8: Reality Distortion Field -->
+    <section id="distortion-field" class="section section--distortion" aria-label="Reality distortion field">
+      <div class="distortion-content" id="distortionContent">
+        <p class="distortion-line distortion-line--1">reality bends softly here</p>
+        <p class="distortion-line distortion-line--2">colors forget their names</p>
+        <p class="distortion-line distortion-line--3">shapes drift like thoughts</p>
+        <div class="distortion-shapes">
+          <span class="dist-shape dist-shape--1"></span>
+          <span class="dist-shape dist-shape--2"></span>
+          <span class="dist-shape dist-shape--3"></span>
+          <span class="dist-shape dist-shape--4"></span>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 9: Dream Loop Space -->
+    <section id="dream-loop" class="section section--dream" aria-label="Dream loop space">
+      <div class="dream-loop" id="dreamLoop">
+        <div class="dream-track dream-track--a" aria-hidden="true"></div>
+        <div class="dream-track dream-track--b" aria-hidden="true"></div>
+        <div class="dream-fragments" id="dreamFragments"></div>
+      </div>
+    </section>
+
+    <!-- SECTION 10: Final Spin Core -->
+    <section id="spin-core" class="section section--spin" aria-label="Final spin core">
+      <div class="spin-core" id="spinCore">
+        <div class="spin-core__glow" aria-hidden="true"></div>
+        <div class="spin-core__ring" aria-hidden="true"></div>
+        <h2 class="spin-core__text">Spin again… if you want something unexpected</h2>
+        <button class="spin-core__btn" id="spinBtn" type="button">SPIN LUNIQ</button>
+        <p class="spin-core__contact">
+          <a href="mailto:hello@luniq.fun" class="spin-core__link">hello@luniq.fun</a>
+        </p>
+      </div>
+    </section>
+
+  </main>
+
+  <script src="js/audio.js" defer></script>
+  <script src="js/orb.js" defer></script>
+  <script src="js/sections.js" defer></script>
+  <script src="js/main.js" defer></script>
+</body>
+</html>
